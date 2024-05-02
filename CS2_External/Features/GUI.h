@@ -670,10 +670,12 @@ namespace GUI
 						ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 10.f);
 						ImGui::TextColored(ImColor(255, 50, 0, 255), "This might cause BAN");
 					}
+					PutSwitch("Winnie", 10.f, ImGui::GetFrameHeight() * 1.7, &ESPConfig::winniethepool);
+					/*
 					if (MenuConfig::Country == "CN" && MenuConfig::Language == 6)
 					{
 						PutSwitch("Winnie", 10.f, ImGui::GetFrameHeight() * 1.7, &ESPConfig::winniethepool);
-					}
+					}*/
 
 
 					ImGui::NextColumn();

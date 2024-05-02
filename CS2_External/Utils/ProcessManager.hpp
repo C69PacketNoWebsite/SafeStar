@@ -256,6 +256,7 @@ public:
 	/// <param name="Value">写入数据</param>
 	/// <param name="Size">写入大小</param>
 	/// <returns>是否写入成功</returns>
+	/// wow they did what i was gonna do crazy
 	template <typename ReadType>
 	bool WriteMemory(DWORD64 Address, ReadType& Value, int Size)
 	{

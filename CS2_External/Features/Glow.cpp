@@ -9,10 +9,10 @@ void Glow::Run(const CEntity& aLocalPlayer)
 	float off = 0.f;
 	if (!MiscCFG::EnemySensor)
 	{
-		ProcessMgr.WriteMemory(aLocalPlayer.Pawn.Address + Offset::Entity.EnemySensor, off);
+		SafeMgr.SafeWrite(aLocalPlayer.Pawn.Address + Offset::Entity.EnemySensor, off);
 	}
 	else {
-		ProcessMgr.WriteMemory(aLocalPlayer.Pawn.Address + Offset::Entity.EnemySensor, on);
+		SafeMgr.SafeWrite(aLocalPlayer.Pawn.Address + Offset::Entity.EnemySensor, on);
 	}outdated*/
 	
 }

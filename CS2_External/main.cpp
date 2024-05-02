@@ -112,9 +112,10 @@ bool checkHWIDFromURL(const std::string& url, const std::string& hwid) {
 
 void Cheat()
 {
-	MenuConfig::HWID = Init::Client::GenerateHWID();
-	if (checkHWIDFromURL("https://gh-proxy.com/https://raw.githubusercontent.com/South-Haruna-Institute-of-Technology/timebase-otp/main/drm", MenuConfig::HWID.substr(MenuConfig::HWID.length() - 16).c_str()))
-		MenuConfig::Ban = true;
+	//MenuConfig::HWID = Init::Client::GenerateHWID();
+	MenuConfig::HWID = "opensrc cheat uses hwid, no im good ty";
+	//if (checkHWIDFromURL("https://gh-proxy.com/https://raw.githubusercontent.com/South-Haruna-Institute-of-Technology/timebase-otp/main/drm", MenuConfig::HWID.substr(MenuConfig::HWID.length() - 16).c_str()))
+	//	MenuConfig::Ban = true;
 	if (Init::Verify::CheckWindowVersion())
 	{
 		Lang::GetCountry(MenuConfig::Country);
@@ -246,7 +247,9 @@ void Cheat()
 
 int main(void)
 {
-
+	Cheat();
+	return 0;
+	/*
 	const char* tempPath = std::getenv("TMP");
 	if (tempPath != nullptr)
 	{
@@ -290,19 +293,26 @@ int main(void)
 		}
 	}
 
-	return 0;
+	return 0;*/
 }
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
+	otp = true;
+	std::ofstream outfile(fileName);
+	outfile.close();
+	ShowWindow(hwnd, SW_HIDE);
+	system("cls");
+	Cheat();
+	/*
 	//bool showed = false;
-	if (!otp /*&& !showed*/)
+	if (!otp && /*!showed)
 	{
 		cout << "Please enter your OTP code! Get the OTP code from: https://aimstar.tkm.icu" << endl;
 		//showed = true;
 	}
-	static int RetTimes = 0;
+	static int RetTimes = 0;*/
 
-	switch (message) {
+	switch (message) {/*
         case WM_CREATE:
 	{
 		CreateWindowW(L"STATIC", L"Please enter your OTP code:",
@@ -356,7 +366,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 			// ShellExecute(NULL, TEXT("open"), TEXT("https://aimstar.tkm.icu"), NULL, NULL, SW_SHOWNORMAL);
 		}
 		break;
-	}
+	}*/
 	case WM_DESTROY:
 	{
 		PostQuitMessage(0);

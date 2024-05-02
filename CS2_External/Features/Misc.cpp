@@ -178,7 +178,7 @@ namespace Misc
 			return;
 
 		float MaxAlpha = 255.f - MiscCFG::FlashImmunity;
-		ProcessMgr.WriteMemory(aLocalPlayer.Pawn.Address + Offset::Pawn.flFlashMaxAlpha, MaxAlpha);
+		SafeMgr.SafeWrite(aLocalPlayer.Pawn.Address + Offset::Pawn.flFlashMaxAlpha, MaxAlpha);
 	}
 
 	void FastStop() noexcept
@@ -229,9 +229,9 @@ namespace Misc
 				bool begin = false;
 				int uf = 0;
 
-				ProcessMgr.WriteMemory<bool>(ent_base + Offset::SmokeGrenadeProjectile.bDidSmokeEffect, begin);
-				ProcessMgr.WriteMemory<bool>(ent_base + Offset::SmokeGrenadeProjectile.bSmokeEffectSpawned, begin);
-				ProcessMgr.WriteMemory<int>(ent_base + Offset::SmokeGrenadeProjectile.nSmokeEffectTickBegin, uf);
+				SafeMgr.SafeWrite<bool>(ent_base + Offset::SmokeGrenadeProjectile.bDidSmokeEffect, begin);
+				SafeMgr.SafeWrite<bool>(ent_base + Offset::SmokeGrenadeProjectile.bSmokeEffectSpawned, begin);
+				SafeMgr.SafeWrite<int>(ent_base + Offset::SmokeGrenadeProjectile.nSmokeEffectTickBegin, uf);
 			}
 
 			// Smoke Color
@@ -254,7 +254,7 @@ namespace Misc
 				if (classname == "smokegrenade_projectile")
 				{
 					if (MiscCFG::SmokeColored)
-						ProcessMgr.WriteMemory<Vector3>(ent_base + Offset::SmokeGrenadeProjectile.vSmokeColor, COLOR);
+						SafeMgr.SafeWrite<Vector3>(ent_base + Offset::SmokeGrenadeProjectile.vSmokeColor, COLOR);
 				}
 				/* Disabled
 				if (classname == "molotov_projectile")
@@ -277,7 +277,7 @@ namespace Misc
 			return;
 
 		bool SpottedStatus = true;
-		ProcessMgr.WriteMemory(EntityList.Pawn.Address + Offset::Pawn.bSpottedByMask, SpottedStatus);
+		SafeMgr.SafeWrite(EntityList.Pawn.Address + Offset::Pawn.bSpottedByMask, SpottedStatus);
 	}
 
 	void FovChanger(const CEntity& aLocalPlayer) noexcept
@@ -293,7 +293,7 @@ namespace Misc
 			return;
 
 		UINT Desiredfov = static_cast<UINT>(MiscCFG::Fov);
-		ProcessMgr.WriteMemory<UINT>(aLocalPlayer.Controller.Address + Offset::Pawn.DesiredFov, Desiredfov);
+		SafeMgr.SafeWrite<UINT>(aLocalPlayer.Controller.Address + Offset::Pawn.DesiredFov, Desiredfov);
 
 	}
 
@@ -332,10 +332,10 @@ namespace Misc
 		ProcessMgr.ReadMemory(aLocalPlayer.Pawn.Address + Offset::Pawn.MovementServices, MovementServices);
 		if (!MiscCFG::Jitter)
 		{
-			ProcessMgr.WriteMemory(MovementServices + Offset::Pawn.CrouchState, unDuck);
+			SafeMgr.SafeWrite(MovementServices + Offset::Pawn.CrouchState, unDuck);
 		}
 		else {
-			ProcessMgr.WriteMemory(MovementServices + Offset::Pawn.CrouchState, Ducking);
+			SafeMgr.SafeWrite(MovementServices + Offset::Pawn.CrouchState, Ducking);
 		}
 	}
 
@@ -420,7 +420,7 @@ namespace Misc
 		if (Zoom)
 		{
 			UINT Scopefov = 45;
-			ProcessMgr.WriteMemory<UINT>(aLocalPlayer.Controller.Address + Offset::Pawn.DesiredFov, Scopefov);
+			SafeMgr.SafeWrite<UINT>(aLocalPlayer.Controller.Address + Offset::Pawn.DesiredFov, Scopefov);
 		}
 			
 	}
